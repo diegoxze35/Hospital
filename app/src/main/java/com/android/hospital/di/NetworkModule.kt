@@ -35,9 +35,6 @@ object NetworkModule {
 			engine {
 				connectTimeout = 12_000
 				socketTimeout = 12_000
-				/*requestConfig = {
-					useCaches = false
-				}*/
 			}
 			defaultRequest {
 				url(urlString = "http://192.168.1.10:8080/api/")

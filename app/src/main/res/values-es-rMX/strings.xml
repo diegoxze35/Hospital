@@ -53,4 +53,6 @@
 	<string name="to_down">Dar de baja</string>
 	<string name="to_up">Dar de alta</string>
 	<string name="cannot_update">No se puede actualizar el estado del usuario porque tiene %d citas pendientes</string>
+	<string name="undispose_user">Usuario temporalmente no activo, comuniquese con un recepcionista</string>
+	<string name="emit">Emitir Ticket</string>
 </resources>

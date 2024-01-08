@@ -21,4 +21,8 @@ sealed class Screen(val route: String) {
 	object PrescriptionScreen : Screen(PrescriptionScreen::class.java.simpleName)
 	
 	object AllUsersScreen : Screen(AllUsersScreen::class.java.simpleName)
+	
+	object UserNotActiveScreen : Screen(UserNotActiveScreen::class.java.simpleName)
+	
+	object TicketsScreen : Screen(TicketsScreen::class.java.simpleName)
 }

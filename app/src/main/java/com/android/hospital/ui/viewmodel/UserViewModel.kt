@@ -10,9 +10,11 @@ import com.android.hospital.data.api.HospitalUserRepository
 import com.android.hospital.data.domain.AddUserRequest
 import com.android.hospital.data.domain.DoctorWithSpecialityResponse
 import com.android.hospital.data.domain.EditMedicalCiteRequest
+import com.android.hospital.data.domain.EmitTicketRequest
 import com.android.hospital.data.domain.MedicCiteRequest
 import com.android.hospital.data.domain.MedicalPrescription
 import com.android.hospital.data.domain.MedicalSpeciality
+import com.android.hospital.data.domain.TicketResponse
 import com.android.hospital.data.domain.UpdateUserStateResponse
 import com.android.hospital.data.domain.UserResponse
 import com.android.hospital.data.domain.medicalappointment.MedicalAppointment
@@ -151,14 +153,29 @@ class UserViewModel @Inject constructor(
 			_allUsers.value = repository.getAllPatientAndDoctors()
 		}
 	}
+	
 	var currentFail: UpdateUserStateResponse.CannotUpdateUserState? by mutableStateOf(null)
 	fun updateActiveUser(request: UpdateIsActiveUserRequest) {
 		viewModelScope.launch {
-			val result = repository.updateUserActive(request)
-			when (result) {
+			when (val result = repository.updateUserActive(request)) {
 				is UpdateUserStateResponse.CannotUpdateUserState -> currentFail = result
 				UpdateUserStateResponse.Success -> getAllPatientsAndDoctors()
 			}
+		}
+	}
+	
+	private val _currentTickets = MutableStateFlow(emptyList<TicketResponse>())
+	val currentTickets = _currentTickets.asStateFlow()
+	fun getAllTickets() {
+		viewModelScope.launch {
+			_currentTickets.value = repository.getAllTickets()
+		}
+	}
+	
+	fun emitTickets(emitTicketRequest: EmitTicketRequest) {
+		viewModelScope.launch {
+			repository.emitTickets(emitTicketRequest)
+			getAllTickets()
 		}
 	}
 }

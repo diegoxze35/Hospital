@@ -4,11 +4,13 @@ import com.android.hospital.data.domain.AddUserRequest
 import com.android.hospital.data.domain.CreatedUserResponse
 import com.android.hospital.data.domain.DoctorWithSpecialityResponse
 import com.android.hospital.data.domain.EditMedicalCiteRequest
+import com.android.hospital.data.domain.EmitTicketRequest
 import com.android.hospital.data.domain.MedicCiteRequest
 import com.android.hospital.data.domain.MedicalPrescription
 import com.android.hospital.data.domain.medicalappointment.MedicalAppointmentOfUser
 import com.android.hospital.data.domain.MedicalSpeciality
 import com.android.hospital.data.domain.ScheduleCiteResponse
+import com.android.hospital.data.domain.TicketResponse
 import com.android.hospital.data.domain.UpdateUserStateResponse
 import com.android.hospital.data.domain.UserResponse
 import com.android.hospital.ui.domain.UpdateIsActiveUserRequest
@@ -30,4 +32,6 @@ interface HospitalUserRepository {
 	suspend fun getPrescriptionsOfPatient(patientName: String): List<MedicalPrescription>
 	suspend fun getAllPatientAndDoctors(): List<UserResponse>
 	suspend fun updateUserActive(request: UpdateIsActiveUserRequest): UpdateUserStateResponse
+	suspend fun getAllTickets(): List<TicketResponse>
+	suspend fun emitTickets(emitTicketRequest: EmitTicketRequest)
 }

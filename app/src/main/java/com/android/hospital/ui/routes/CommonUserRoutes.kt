@@ -2,7 +2,10 @@ package com.android.hospital.ui.routes
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -10,6 +13,8 @@ import androidx.compose.material.icons.outlined.Circle
 import androidx.compose.material.icons.outlined.MedicalInformation
 import androidx.compose.material.icons.outlined.MenuBook
 import androidx.compose.material.icons.outlined.Minimize
+import androidx.compose.material.icons.outlined.MonetizationOn
+import androidx.compose.material.icons.outlined.MoodBad
 import androidx.compose.material.icons.outlined.MoreTime
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -91,12 +96,18 @@ fun NavGraphBuilder.commonUserRoutes(
 				is ReceptionistUser -> {
 					userOptions = stringArrayResource(id = R.array.receptionist_options).toList()
 					iconsOptions = with(Icons.Outlined) {
-						listOf(Minimize)
+						listOf(Minimize, MonetizationOn)
 					}
-					onClickOptions = listOf {
-						userViewModel.getAllPatientsAndDoctors()
-						navController.navigate(Screen.AllUsersScreen.route)
-					}
+					onClickOptions = listOf(
+						{
+							userViewModel.getAllPatientsAndDoctors()
+							navController.navigate(Screen.AllUsersScreen.route)
+						},
+						{
+							userViewModel.getAllTickets()
+							navController.navigate(Screen.TicketsScreen.route)
+						}
+					)
 				}
 			}
 			MainUserScreen(
@@ -189,6 +200,18 @@ fun NavGraphBuilder.commonUserRoutes(
 					)
 				}
 			}
+		}
+	}
+	
+	composable(route = Screen.UserNotActiveScreen.route) {
+		Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
+			Icon(
+				imageVector = Icons.Outlined.MoodBad,
+				contentDescription = null,
+				modifier = Modifier.size(80.dp)
+			)
+			Spacer(modifier = Modifier.height(16.dp))
+			Text(text = stringResource(id = R.string.undispose_user))
 		}
 	}
 }

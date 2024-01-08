@@ -35,7 +35,7 @@ fun NavGraphBuilder.loginRoutes(navController: NavController, onLogin: (User) ->
 			authState = state
 		) { user ->
 			if ((user is PatientUser && !user.isActive) || (user is DoctorUser && !user.isActive)) {
-				/*TODO()*/
+				navController.navigate(Screen.UserNotActiveScreen.route)
 			} else {
 				navController.navigate(
 					route = Screen.UserMainScreen.route

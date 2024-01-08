@@ -6,16 +6,19 @@ import com.android.hospital.data.domain.AddUserRequest
 import com.android.hospital.data.domain.CreatedUserResponse
 import com.android.hospital.data.domain.DoctorWithSpecialityResponse
 import com.android.hospital.data.domain.EditMedicalCiteRequest
+import com.android.hospital.data.domain.EmitTicketRequest
 import com.android.hospital.data.domain.MedicCiteRequest
 import com.android.hospital.data.domain.MedicalPrescription
 import com.android.hospital.data.domain.MedicalSpeciality
 import com.android.hospital.data.domain.ScheduleCiteResponse
+import com.android.hospital.data.domain.TicketResponse
 import com.android.hospital.data.domain.UpdateUserStateResponse
 import com.android.hospital.data.domain.UserResponse
 import com.android.hospital.data.domain.medicalappointment.MedicalAppointmentOfUser
 import com.android.hospital.ui.domain.UpdateIsActiveUserRequest
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.request.delete
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.post
@@ -155,6 +158,19 @@ class HospitalUserRepositoryImpl @Inject constructor(
 			return@withContext if (response.status == HttpStatusCode.NotAcceptable)
 				UpdateUserStateResponse.CannotUpdateUserState(response.body())
 			else UpdateUserStateResponse.Success
+		}
+	}
+	
+	override suspend fun getAllTickets(): List<TicketResponse> {
+		return withContext(Dispatchers.IO) {
+			client.get("allTickets").body()
+		}
+	}
+	
+	override suspend fun emitTickets(emitTicketRequest: EmitTicketRequest) {
+		return withContext(Dispatchers.IO) {
+			val response = client.delete("emitTicket")
+			println(response.status.value)
 		}
 	}
 }

@@ -52,4 +52,6 @@
 	<string name="to_down">Unsubscribe</string>
 	<string name="to_up">Subscribe</string>
 	<string name="cannot_update">The user can not update state because have %d pending appointments</string>
+	<string name="undispose_user">User temporally inactive</string>
+	<string name="emit">Emit Ticket</string>
 </resources>

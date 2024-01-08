@@ -3,13 +3,16 @@ package com.android.hospital.ui.routes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AttachMoney
 import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.Dangerous
 import androidx.compose.material3.AlertDialog
@@ -29,18 +32,20 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+/*import androidx.navigation.NavController*/
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.android.hospital.R
+import com.android.hospital.data.domain.EmitTicketRequest
 import com.android.hospital.data.domain.UpdatableUser
 import com.android.hospital.ui.domain.UpdateIsActiveUserRequest
 import com.android.hospital.ui.screen.Screen
 import com.android.hospital.ui.screen.receptionistscreens.AddUserScreen
 import com.android.hospital.ui.viewmodel.UserViewModel
 
-fun NavGraphBuilder.receptionistRoutes(navController: NavController, userViewModel: UserViewModel) {
+fun NavGraphBuilder.receptionistRoutes(/*navController: NavController, */userViewModel: UserViewModel) {
 	composable(route = Screen.AddUserScreen.route) {
 		if (userViewModel.allMedicalSpecialities.isEmpty()) {
 			Box(Modifier.fillMaxSize()) {
@@ -169,6 +174,61 @@ fun NavGraphBuilder.receptionistRoutes(navController: NavController, userViewMod
 					}
 				}
 			)
+		}
+	}
+	
+	composable(Screen.TicketsScreen.route) {
+		val allTickets by userViewModel.currentTickets.collectAsState()
+		LazyColumn(
+			modifier = Modifier.fillMaxSize(),
+			contentPadding = PaddingValues(all = 8.dp),
+			verticalArrangement = Arrangement.spacedBy(8.dp)
+		) {
+			items(allTickets) {
+				Card(modifier = Modifier.fillMaxWidth()) {
+					Text(
+						text = it.patientFullName,
+						style = MaterialTheme.typography.titleLarge,
+						fontWeight = FontWeight.ExtraBold
+					)
+					Row(horizontalArrangement = Arrangement.Center) {
+						Icon(
+							imageVector = Icons.Outlined.AttachMoney,
+							contentDescription = it.total.toString()
+						)
+						Text(text = it.total.toString())
+					}
+					LazyRow(
+						modifier = Modifier.padding(all = 16.dp),
+						horizontalArrangement = Arrangement.spacedBy(16.dp)
+					) {
+						items(it.tickets) { ticket ->
+							Card(
+								colors = CardDefaults.cardColors(
+									containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+									contentColor = MaterialTheme.colorScheme.onTertiaryContainer
+								),
+								elevation = CardDefaults.cardElevation(
+									defaultElevation = 8.dp
+								)
+							) {
+								Text(text = ticket.concept)
+								Text(text = ticket.amount.toString())
+							}
+						}
+					}
+					Button(
+						onClick = {
+							userViewModel.emitTickets(
+								EmitTicketRequest(it.patientId)
+							)
+						},
+						modifier = Modifier.fillMaxWidth()
+					) {
+						Text(text = stringResource(id = R.string.emit))
+					}
+				}
+			}
 		}
 	}
 }

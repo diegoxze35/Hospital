@@ -11,5 +11,6 @@
 	</string-array>
 	<string-array name="receptionist_options">
 		<item>Bajas de usuarios</item>
+		<item>Emitir Tickets</item>
 	</string-array>
 </resources>
