@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="patient_options">
+		<item>Mis citas medicas</item>
+		<item>Agendar nueva cita médica</item>
+	</string-array>
+	
+	<string-array name="doctor_options">
+		<item>Citas Medicas</item>
+		<item>Crear receta medica</item>
+	</string-array>
+	<string-array name="receptionist_options">
+		<item>Bajas de usuarios</item>
+	</string-array>
+</resources>

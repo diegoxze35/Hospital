@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="patient_options">
+		<item>My medical appointments</item>
+		<item>Schedule new medical appointment</item>
+	</string-array>
+	
+	<string-array name="doctor_options">
+		<item>Medical appointments</item>
+		<item>Prescription</item>
+	</string-array>
+	<string-array name="receptionist_options">
+		<item>Users cancellations</item>
+	</string-array>
+</resources>

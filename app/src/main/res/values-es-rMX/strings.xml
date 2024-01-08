@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Hospital</string>
+	<string name="welcome_message">Bienvenido al hospital</string>
+	<string name="login">Iniciar sesión</string>
+	<string name="username">Nombre de usuario</string>
+	<string name="password">Contraseña</string>
+	<string name="message_incorrect_password">¡Hola %s! su contraseña es incorrecta, intente de nuevo</string>
+	<string name="user_not_found">Usuario no encontrado en el sistema</string>
+	<string name="close_session">Cerrar sesión</string>
+	<string name="add_user">Añadir Usuario</string>
+	<string name="male">Masculino</string>
+	<string name="female">Femenino</string>
+	<string name="patient">Paciente</string>
+	<string name="doctor">Doctor</string>
+	<string name="receptionist">Recepcionista</string>
+	<string name="name_of_new_user">Nombre del nuevo usuario</string>
+	<string name="paternal_of_new_user">Apellido paterno del nuevo usuario</string>
+	<string name="maternal_of_new_user">Apellido materno del nuevo usuario</string>
+	<string name="new_password">Nueva contraseña</string>
+	<string name="person_key">CURP</string>
+	<string name="doctor_licence">Cedula profesional del doctor</string>
+	<string name="medid_speciality">Especialidad medica</string>
+	<string name="select_speciality">Seleccione una especialidad</string>
+	<string name="adding_user">Creando usuario en el sistema …</string>
+	<string name="user_adding_correctly_to_system">Usuario añadido correctamente al sistema</string>
+	<string name="add_other_user">Añadir otro usuario</string>
+	<string name="username_new_user">Nombre de usuario para acceder %s</string>
+	<string name="select_doctor_message">Seleccione un doctor de la especialidad para agendar</string>
+	<string name="select_a_date">Seleccionar una fecha</string>
+	
+	<string name="room_number">Consultorio número %d</string>
+	<string name="cites_with_doctor">"Citas médicas con el doctor %s"</string>
+	<string name="cancel">Cancelar</string>
+	<string name="confirm_medical_cite">Confirmación de cita medica</string>
+	<string name="confirmation_message">Doctor %s fecha y hora %s consultorio %d</string>
+	<string name="confirm">Confirmar</string>
+	<string name="shcedule_medic_cite">Número de folio: %d\nEspecialidad: %s\nFecha y hora: %s\nConsultorio: %d</string>
+	<string name="cite_schedule_correctly">¡Cita agendada correctamente!</string>
+	<string name="cite_cancelled">Cancelada</string>
+	<string name="next">Proxima</string>
+	<string name="completed">Completada</string>
+	<string name="medical_cite_updated_correctly">Cita medica actualizada correctamente</string>
+	<string name="empty_cites_message">Parece que no cuentas con citas %s</string>
+	<string name="date_and_hour">"Fecha y hora: "</string>
+	<string name="folio">Folio: %s</string>
+	<string name="consulting_room">Consultorio: %s</string>
+	<string name="speciality">Especialidad: %s</string>
+	<string name="cancel_medical_cite">¿Cancelar esta cita medica?</string>
+	<string name="diagnostic">Diagnostico %s</string>
+	<string name="treatment">Tratamiento</string>
+	<string name="medicament">Medicamento %s</string>
+	<string name="to_down">Dar de baja</string>
+	<string name="to_up">Dar de alta</string>
+	<string name="cannot_update">No se puede actualizar el estado del usuario porque tiene %d citas pendientes</string>
+</resources>
